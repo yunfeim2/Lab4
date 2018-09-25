@@ -43,7 +43,7 @@ public class Colosseum {
      * <p>
      * Requirements we should check the user for: <br>
      * - Hit points are between 1 and MAX_HIT_POINTS <br>
-     * - No more than 50 points are split between attack level and defense leve <br>
+     * - No more than 50 points are split between attack level and defense level <br>
      * - Attack level and defense level must have at least 1 point each <br>
      * Example of how this will look to the user:
      * <p>
@@ -63,16 +63,47 @@ public class Colosseum {
      * Enter your attack level (1-49): -10 <br>
      * Sorry. The attack level must be between 1 and 49: 73 <br>
      * Sorry. The attack level must be between 1 and 49: 27 <br>
-     * Enter your defense level (1-23): 24 <br>
+     * Enter your defense level (1-23):  24 <br>
      * Sorry. The defense level must be between 1 and 23: 23
      *
      * @return tempPokemon - the Pokemon we built and are going to set our fighting Pokemon to <br>
-     *         (Look, we can return objects too!)
+     *         (Look, we can r eturn objects too!)
      *         <p>
      *         Implement this function.
      */
     public static Pokemon buildPokemon() {
         Pokemon tempPokemon = new Pokemon();
+        System.out.println("please enter the name:");
+        String a = myScan.next();
+        tempPokemon.name = a;
+
+        int hitPoint = 0;
+        while (hitPoint < 1 || hitPoint > MAX_HIT_POINTS) {
+            System.out.println("Please enter the hitpoints: ");
+            hitPoint = myScan.nextInt();
+            if (hitPoint < 1 || hitPoint > MAX_HIT_POINTS) {
+                System.out.println("Sorry. Hit points must be between 1 and 50, please reenter!");
+            }
+        }
+        tempPokemon.hitPoints = hitPoint;
+        int attactPoint = 0;
+        while (attactPoint < 1 || attactPoint > 49) {
+            System.out.println("please enter attactpoint :");
+            attactPoint = myScan.nextInt();
+            if (attactPoint < 1 || attactPoint > 49) {
+                System.out.println("Sorry. The attack level must be between 1 and 49,please reenter!");
+            }
+        }
+        tempPokemon.attackLevel = attactPoint;
+        int denfencePoint = 0;
+        while (denfencePoint < 1 || denfencePoint > 23) {
+            System.out.println("please enter denfence points:");
+            denfencePoint = myScan.nextInt();
+            if (denfencePoint < 0 || denfencePoint > 23) {
+                System.out.println("Sorry. The defense level must be between 1 and 23, please reenter!");
+            }
+        }
+        tempPokemon.defenseLevel = denfencePoint;
         return tempPokemon;
     }
 
@@ -90,7 +121,7 @@ public class Colosseum {
      * Implement this function.
      */
     public static void printWhoIsAhead() {
-        System.out.println("Implement me!");
+        determineOrder();
     }
 
     /**
@@ -101,7 +132,7 @@ public class Colosseum {
      * Write this function.
      */
     public static void determineWinner() {
-        System.out.println("Implement me!");
+        firstPokemon.attack(secondPokemon);
     }
 
     /**
@@ -113,14 +144,14 @@ public class Colosseum {
         System.out.println("Player 1, build your Pokemon!");
         System.out.println("=================");
         firstPokemon = buildPokemon();
-        firstPokemon.name = "Chuchu";
+//        firstPokemon.name = "Chuchu";
 
         System.out.println("");
 
         System.out.println("Player 2, build your Pokemon!");
         System.out.println("==================");
         secondPokemon = buildPokemon();
-        secondPokemon.name = "Xyz";
+//        secondPokemon.name = "Xyz";
     }
 
     /**
